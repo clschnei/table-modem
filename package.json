@@ -1,0 +1,17 @@
+{
+  "name": "pba",
+  "version": "0.0.0",
+  "description": "Scrapes webpages and returns table data in JSON format.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "clschnei",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "coffee-script": "~1.7.1",
+    "express": "~3.4.8",
+    "cheerio": "~0.13.1",
+    "request": "~2.34.0"
+  }
+}
