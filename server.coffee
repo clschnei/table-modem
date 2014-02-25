@@ -4,9 +4,11 @@ request = require 'request'
 app     = express()
 port    = process.env.PORT || 5000
 
-app.use(express.logger())
+app.use express.logger()
 
 app.get '*', (req, res) ->
+  res.header "Access-Control-Allow-Origin", "*"
+  res.header "Access-Control-Allow-Headers", "X-Requested-With"
   request req.url.replace('/',''), (e,r,b) ->
     $ = cheerio.load b
     data =
