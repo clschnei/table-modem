@@ -20,7 +20,7 @@ app.get '*', (req, res) ->
   # fetch and construct table data
   request req.query.url, (e,r,b) ->
     return res.send 404, e if e
-    $ = cheerio.load b
+    $ = cheerio.load b, normailizeWhitespace: true
     data =
       title: $('title').text().trim()
       data: for table in $(req.query.selector or "table")
