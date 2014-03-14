@@ -3,7 +3,7 @@ cheerio = require 'cheerio'
 request = require 'request'
 app     = express()
 port    = process.env.PORT || 5000
-validURL = expression = /(http|https):\/\/[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi;
+validURL = /(http|https):\/\/[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi
 
 app.use express.logger()
 
