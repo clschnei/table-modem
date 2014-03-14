@@ -18,16 +18,19 @@ app.get '*', (req, res) ->
   res.setHeader 'Content-Type', 'application/json'
 
   # fetch and construct table data
-  request url, (e,r,b) ->
+  request req.query.url, (e,r,b) ->
     return res.send 404, e if e
     $ = cheerio.load b
     data =
       title: $('title').text().trim()
-      data: for table in $('table')
+      data: for table in $(req.query.selector or "table")
         for tr in $(table).find('tr')
           for td in $(tr).find('td,th')
             t = $(td).text().trim()
             +t or t
+
+    # if only one result, push it to the top-level
+    data.data = data.data.pop() if data.data.length is 1
 
     # return data
     return res.send 404, error: 'url has no table data' unless data.data.length
