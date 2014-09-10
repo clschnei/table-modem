@@ -7,9 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "cheerio": "~0.13.1",
     "coffee-script": "~1.7.1",
     "express": "~3.4.8",
-    "cheerio": "~0.13.1",
+    "nodetime": "^0.8.15",
     "request": "~2.34.0"
   }
 }

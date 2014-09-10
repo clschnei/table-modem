@@ -1,3 +1,9 @@
+# NodeTime monitoring
+if process.env.NODETIME_ACCOUNT_KEY
+  require('nodetime').profile
+    accountKey: process.env.NODETIME_ACCOUNT_KEY
+    appName: process.env.NODETIME_APP_NAME
+
 VALID_URL = /(http|https):\/\/[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi
 PORT    = process.env.PORT or 5000
 express = require 'express'
