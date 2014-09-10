@@ -13,7 +13,7 @@ getTableData = ($, selector = 'table') -> for table in $(selector)
 app.use express.logger()
 
 app.get '*', (req, res) ->
-  url = req.url.replace('/','')
+  url = decodeURIComponent req.query.url
   # make sure url is kosher
   return res.send 400, error: 'must be a valid url' unless url.match VALID_URL
 
