@@ -8,7 +8,7 @@ getTableData = ($, selector = 'table') -> for table in $(selector)
   for tr in $(table).find 'tr'
     for td in $(tr).find 'td,th'
       t = $(td).text().trim()
-      +t or t
+      if t is '0' then +t else +t or t
 
 app.use express.logger()
 
