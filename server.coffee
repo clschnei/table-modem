@@ -10,11 +10,20 @@ express = require 'express'
 cheerio = require 'cheerio'
 request = require 'request'
 app     = express()
-getTableData = ($, selector = 'table') -> for table in $(selector)
-  for tr in $(table).find 'tr'
-    for td in $(tr).find 'td,th'
-      t = $(td).text().trim()
+$       = null
+getData = (selector = 'table') ->
+  if $(selector).is('table')
+    getTableData(selector)
+  else
+    for element in $(selector)
+      t = $(element).text()
       if t is '0' then +t else +t or t
+
+getTableData = (selector = 'table') ->
+  for table in $(selector)
+    for tr in $(table).find 'tr'
+      for td in $(tr).find 'td,th'
+        t = $(td).text().trim()
 
 app.use express.logger()
 
@@ -34,7 +43,7 @@ app.get '*', (req, res) ->
     $ = cheerio.load b, normalizeWhitespace: true
     data =
       title: $('title').text().trim()
-      data: getTableData $, req.query.selector
+      data: getData req.query.selector
 
     # if only one result, push it to the top-level
     data.data = data.data.pop() if data.data.length is 1
