@@ -28,7 +28,7 @@ getTableData = (selector = 'table') ->
 app.use express.logger()
 
 app.get '*', (req, res) ->
-  url = decodeURIComponent req.query.url
+  {url, selector} = req.query
   # make sure url is kosher
   return res.send 400, error: 'must be a valid url' unless url.match VALID_URL
 
@@ -43,7 +43,7 @@ app.get '*', (req, res) ->
     $ = cheerio.load b, normalizeWhitespace: true
     data =
       title: $('title').text().trim()
-      data: getData req.query.selector
+      data: getData selector
 
     # if only one result, push it to the top-level
     data.data = data.data.pop() if data.data.length is 1
