@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "express": "4.16.2",
-    "jsdom": "11.3.0",
+    "jsdom": "16.5.0",
     "morgan": "1.9.1",
     "request": "2.83.0"
   }
